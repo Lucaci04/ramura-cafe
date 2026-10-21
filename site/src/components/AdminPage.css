@@ -1,0 +1,267 @@
+.admin {
+  min-height: 100svh;
+  background: var(--oat);
+}
+
+.admin__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  padding: 1rem var(--margin);
+  background: var(--espresso);
+  color: var(--oat);
+}
+
+.admin__mark {
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+  font-weight: 700;
+  font-size: 1.75rem;
+  text-decoration: none;
+}
+
+.admin__title {
+  font-weight: 600;
+}
+
+.admin__back {
+  margin-left: auto;
+}
+
+.admin__main {
+  max-width: 64rem;
+  margin-inline: auto;
+  padding: 3rem var(--margin) 6rem;
+}
+
+.admin h1 {
+  font-size: var(--step-head);
+}
+
+.admin h2 {
+  font-size: var(--step-lead);
+}
+
+.admin__signin {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+  max-width: 28rem;
+}
+
+.admin__field {
+  display: grid;
+  gap: 0.375rem;
+  font-weight: 600;
+}
+
+.admin__field--grow {
+  flex: 1;
+}
+
+.admin__field--wide {
+  grid-column: 1 / -1;
+}
+
+/* Formularele își păstrează conturul: sunt câmpuri reale. */
+.admin input,
+.admin textarea {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid #8a7b70;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--espresso);
+  font: 400 1rem / 1.4 var(--font-text);
+}
+
+.admin textarea {
+  resize: vertical;
+}
+
+.admin__signin input {
+  width: min(100%, 22rem);
+}
+
+.admin__error {
+  color: #9c1f12;
+  font-weight: 600;
+}
+
+.admin__hint {
+  color: var(--espresso-soft);
+  font-size: var(--step-small);
+}
+
+.admin__ghost {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 1.1rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--oat-deep);
+  color: var(--espresso);
+  font: 600 0.9375rem / 1 var(--font-text);
+  cursor: pointer;
+  transition: background-color 160ms ease-out, transform 120ms ease-out;
+}
+
+.admin__ghost:active {
+  transform: scale(0.97);
+}
+
+.admin__bar .admin__ghost {
+  background: rgb(255 255 255 / 0.12);
+  color: var(--oat);
+}
+
+.admin__danger {
+  color: #9c1f12;
+}
+
+.admin button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.admin__file {
+  position: relative;
+}
+
+.admin__file input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.admin__file:focus-within {
+  outline: 3px solid var(--butter);
+  outline-offset: 3px;
+}
+
+.admin__editor {
+  display: grid;
+  gap: 3rem;
+}
+
+.admin__actions {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  background: var(--oat);
+}
+
+.admin__status {
+  flex-basis: 100%;
+  font-weight: 600;
+}
+
+.admin__status--saved {
+  color: var(--sage-deep);
+}
+
+.admin__status--error {
+  color: #9c1f12;
+}
+
+.admin__section {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.admin__section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin__empty {
+  color: var(--espresso-soft);
+}
+
+.admin__category,
+.admin__review {
+  margin: 0;
+  padding: 1.5rem;
+  border: 0;
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.admin__category {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.admin__category-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 1rem;
+  width: 100%;
+}
+
+.admin__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin__table th {
+  padding: 0 0.5rem 0.5rem 0;
+  font-size: var(--step-small);
+  text-align: left;
+}
+
+.admin__table td {
+  padding: 0.25rem 0.5rem 0.25rem 0;
+  vertical-align: top;
+}
+
+.admin__table td:nth-child(2) {
+  width: 8rem;
+}
+
+.admin__review {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  justify-items: stretch;
+}
+
+.admin__review > button {
+  justify-self: start;
+}
+
+@media (max-width: 47.99rem) {
+  .admin__table thead {
+    display: none;
+  }
+
+  .admin__table tr {
+    display: grid;
+    gap: 0.5rem;
+    padding-block: 0.75rem;
+  }
+
+  .admin__table td,
+  .admin__table td:nth-child(2) {
+    width: auto;
+    padding: 0;
+  }
+
+  .admin__review {
+    grid-template-columns: 1fr;
+  }
+}

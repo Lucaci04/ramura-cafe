@@ -1,0 +1,12 @@
+node_modules/
+site/node_modules/
+site/dist/
+.DS_Store
+dist/
+.env
+.env.*
+!.env.example
+*.log
+.vercel/
+xcuserdata/
+.clerk/

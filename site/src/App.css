@@ -1,0 +1,541 @@
+/* Secțiunile paginii. Fiecare are altă compoziție; oul este singura formă. */
+
+main > section + section {
+  margin-top: var(--section-gap);
+}
+
+h2 {
+  font-size: var(--step-head);
+}
+
+h3 {
+  font-size: var(--step-lead);
+  line-height: 1.1;
+}
+
+/* Povestea: cele trei ouă -------------------------------------------- */
+
+.story {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 7rem);
+  align-items: center;
+  max-width: var(--content);
+  margin-inline: auto;
+  padding-inline: var(--margin);
+  padding-top: var(--section-gap);
+}
+
+.story__statement {
+  max-width: 30rem;
+  margin-top: 1.75rem;
+  font-size: var(--step-lead);
+  line-height: 1.25;
+}
+
+.story__eggs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.story__egg {
+  position: relative;
+  isolation: isolate;
+  width: 7.5rem;
+  height: 9rem;
+  border: 0;
+  border-radius: var(--egg);
+  background: var(--oat-deep);
+  color: var(--espresso);
+  font: 600 var(--step-body) / 1 var(--font-text);
+  cursor: pointer;
+  transition: background-color 200ms ease-out, color 200ms ease-out;
+}
+
+.story__egg:focus-visible {
+  border-radius: var(--egg);
+}
+
+.story__egg[aria-pressed='true'] {
+  background: var(--cinnamon);
+  color: #fff8f0;
+  /* Fundalul vine după ce oul plin a ajuns, ca alunecarea să rămână vizibilă. */
+  transition-delay: 280ms;
+}
+
+.story__egg-fill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--egg);
+  background: var(--cinnamon);
+}
+
+.story__picture {
+  position: relative;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .story__egg[aria-pressed='false']:hover {
+    background: #d9cfbb;
+  }
+}
+
+.story__panel {
+  margin: 0;
+}
+
+.story__picture {
+  aspect-ratio: 5 / 6;
+  max-width: 34rem;
+  overflow: hidden;
+  border-radius: var(--egg);
+  background: var(--sage);
+}
+
+.story__picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story__panel figcaption {
+  max-width: 30rem;
+  margin-top: 1.5rem;
+}
+
+.story__label {
+  font-weight: 600;
+}
+
+/* Cei mici: panou închis, inserat ---------------------------------- */
+
+.family {
+  padding-inline: 1.25rem;
+}
+
+.family__panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: 4rem;
+  min-height: 105svh;
+  overflow: hidden;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  background: var(--sage-deep);
+  color: var(--sage-ink);
+}
+
+.family__panel h2 {
+  grid-column: 1;
+  max-width: 11ch;
+}
+
+.family__blocks {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: grid;
+  align-content: start;
+  gap: 3.5rem;
+  max-width: 24rem;
+}
+
+.family__block p {
+  margin-top: 0.75rem;
+}
+
+.family__figure {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: end;
+  margin: 3rem 0 0;
+  width: min(38vw, 34rem);
+  margin-bottom: calc(-1 * clamp(2rem, 4vw, 3.5rem) - 7vw);
+}
+
+.family__picture {
+  aspect-ratio: 5 / 6;
+  overflow: hidden;
+  border-radius: var(--egg);
+}
+
+.family__picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Meniu: foaia tipărită ------------------------------------------- */
+
+.menu {
+  padding: clamp(4rem, 8vw, 8rem) var(--margin);
+  background: var(--sage);
+}
+
+.menu__sheet {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: start;
+  max-width: 40rem;
+  margin-inline: auto;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+  background: var(--paper);
+  /* Margini festonate, ca o foaie de meniu tăiată. */
+  --scallop: 14px;
+  /* mască pentru festoane, nu o umplere vizibilă în degrade */
+  mask:
+    radial-gradient(var(--scallop) at 50% 0, #0000 98%, #000) 50% 0 / calc(2 * var(--scallop)) 51% repeat-x,
+    radial-gradient(var(--scallop) at 50% 100%, #0000 98%, #000) 50% 100% / calc(2 * var(--scallop)) 51% repeat-x;
+}
+
+.menu__note {
+  font-size: var(--step-lead);
+  line-height: 1.25;
+}
+
+/* Vizită: adresa în rânduri mari --------------------------------- */
+
+.visit__rows {
+  font-style: normal;
+}
+
+.visit__row {
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(5.5rem, 10vw, 9rem);
+  margin: 0;
+  padding: 0 var(--margin) 1rem;
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+  font-weight: 600;
+  font-size: clamp(2.25rem, 1rem + 5vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.visit__row:nth-child(even) {
+  background: var(--oat-deep);
+}
+
+.visit__row--pending {
+  color: var(--espresso-soft);
+  font-size: clamp(1.75rem, 0.8rem + 3.4vw, 4rem);
+}
+
+.visit__row--link {
+  background: var(--cinnamon);
+  color: #fff8f0;
+  text-decoration: none;
+  transition: background-color 160ms ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .visit__row--link:hover {
+    background: var(--cinnamon-press);
+  }
+}
+
+.visit__postcards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+  margin-top: clamp(3rem, 6vw, 6rem);
+  padding-inline: var(--margin);
+}
+
+.visit__postcard {
+  aspect-ratio: 6 / 5;
+  overflow: hidden;
+  border-radius: var(--egg-wide);
+}
+
+.visit__postcard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.visit__note {
+  max-width: var(--measure);
+  margin-top: 1.5rem;
+  padding-inline: var(--margin);
+}
+
+/* Footer: numele construit din blocuri -------------------------- */
+
+.footer {
+  margin-top: var(--section-gap);
+  padding: var(--margin);
+  padding-top: clamp(3rem, 6vw, 5rem);
+  background: var(--espresso);
+  color: var(--oat);
+}
+
+.footer__mark {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 34svh;
+  min-height: 12rem;
+}
+
+.footer__block {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--espresso);
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+  font-weight: 700;
+  font-size: clamp(5rem, 16vw, 15rem);
+  line-height: 0.78;
+}
+
+.footer__block--sage { height: 100%; background: var(--sage); }
+.footer__block--cinnamon { height: 74%; background: var(--cinnamon); }
+.footer__block--butter { height: 88%; background: var(--butter); }
+.footer__block--oat { height: 64%; background: var(--oat); }
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 2fr;
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+  font-size: var(--step-small);
+}
+
+.footer__grid p + p,
+.footer__grid p + a {
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.footer__strong {
+  font-size: var(--step-body);
+  font-weight: 600;
+}
+
+/* Telefon ------------------------------------------------------- */
+
+@media (max-width: 63.99rem) {
+  .story {
+    grid-template-columns: 1fr;
+  }
+
+  .story__egg {
+    width: 6.25rem;
+    height: 7.5rem;
+  }
+
+  .family {
+    padding-inline: 0.625rem;
+  }
+
+  .family__panel {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 2.5rem;
+    min-height: 0;
+  }
+
+  .family__blocks {
+    grid-column: 1;
+    grid-row: auto;
+    gap: 2rem;
+  }
+
+  .family__figure {
+    grid-row: auto;
+    justify-self: center;
+    width: 86%;
+    margin-bottom: calc(-1 * clamp(2rem, 4vw, 3.5rem) - 22vw);
+  }
+
+  .visit__postcards {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .visit__postcard:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Imaginea care se schimbă stă peste cea care pleacă. */
+.story__picture img {
+  position: absolute;
+  inset: 0;
+}
+
+.footer__grid p {
+  max-width: 60ch;
+}
+
+/* Recenzii: bandă care se derulează singură ------------------------ */
+
+.reviews {
+  overflow: hidden;
+}
+
+.reviews__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  max-width: var(--content);
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+.reviews__toggle {
+  min-height: 2.75rem;
+  padding: 0 1.1rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--oat-deep);
+  color: var(--espresso);
+  font: 600 var(--step-small) / 1 var(--font-text);
+  cursor: pointer;
+  transition: background-color 160ms ease-out, transform 120ms ease-out;
+}
+
+.reviews__toggle:active {
+  transform: scale(0.96);
+}
+
+.reviews__viewport {
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.reviews__track {
+  display: flex;
+  width: max-content;
+  animation: reviews-scroll linear infinite;
+}
+
+.reviews__viewport:hover .reviews__track,
+.reviews__viewport:focus-within .reviews__track,
+.reviews__viewport--still .reviews__track {
+  animation-play-state: paused;
+}
+
+/* Fără mișcare: banda devine un rând pe care îl derulezi singur. */
+.reviews__viewport--still {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+@keyframes reviews-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.reviews__list {
+  display: flex;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0 0.625rem 0 var(--margin);
+  list-style: none;
+}
+
+.reviews__card {
+  display: grid;
+  align-content: space-between;
+  gap: 1.5rem;
+  width: clamp(17rem, 28vw, 24rem);
+  min-height: 16rem;
+  padding: 2.75rem 3.25rem;
+  border-radius: var(--egg-wide);
+  text-align: center;
+  background: var(--butter);
+  scroll-snap-align: start;
+}
+
+.reviews__card:nth-child(3n + 2) {
+  background: var(--sage);
+}
+
+.reviews__card:nth-child(3n) {
+  background: var(--cinnamon);
+  color: #fff8f0;
+}
+
+.reviews__card blockquote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.reviews__card--slot blockquote {
+  font-family: var(--font-text);
+  font-size: var(--step-body);
+}
+
+.reviews__author {
+  font-weight: 600;
+}
+
+.reviews__author span {
+  font-weight: 400;
+}
+
+/* Meniu completat din admin ---------------------------------------- */
+
+.menu__categories {
+  display: grid;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.menu__category h3 {
+  margin-bottom: 1rem;
+}
+
+.menu__items {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu__line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.menu__name {
+  font-weight: 600;
+}
+
+.menu__price {
+  flex-shrink: 0;
+  color: var(--cinnamon);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.menu__desc {
+  max-width: 38ch;
+  color: var(--espresso-soft);
+  font-size: var(--step-small);
+}
+
+.admin-loading {
+  padding: 2rem var(--margin);
+}
